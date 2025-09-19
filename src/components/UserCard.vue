@@ -27,7 +27,7 @@
   </div>
 </template>
 
-<script setup lang="ts">
+<script setup lang="ts" scoped>
 interface User {
   id: number;
   name: string;
@@ -40,7 +40,7 @@ interface Props {
 defineProps<Props>();
 
 const getImageForUser = (id: number): string => {
-  // Imágenes de paisajes originales del ejercicio
+  // Imágenes originales del ejercicio
   const landscapeImages = [
     'https://mott.pe/noticias/wp-content/uploads/2016/07/Estas-fotograf%C3%ADas-capturaron-la-belleza-de-los-paisajes-de-Finlandia-e-Islandia-Mikko-Lagerstedt-1.1.jpg',
     'https://www.phototourbarcelona.com/wp-content/uploads/2020/05/3-1.jpg',
@@ -49,7 +49,7 @@ const getImageForUser = (id: number): string => {
     'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop',
     'https://images.unsplash.com/photo-1518837695005-2083093ee35b?w=400&h=250&fit=crop'
   ];
-  return landscapeImages[id % landscapeImages.length];
+  return landscapeImages[id % landscapeImages.length] ?? 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=250&fit=crop';
 };
 
 // Función para manejar errores de carga de imagen
@@ -61,9 +61,7 @@ const handleImageError = (event: unknown): void => {
 
 <style scoped>
 .user-card {
-  width: 280px;
   border-radius: 16px;
-  overflow: hidden;
   background: white;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
   transition: all 0.3s ease;
@@ -79,10 +77,11 @@ const handleImageError = (event: unknown): void => {
   padding: 24px 20px;
   color: white;
   height: 280px;
-  display: flex;
+  /*display: flex;
   flex-direction: column;
   align-items: flex-start;
   justify-content: flex-start;
+  */
 }
 
 .profile-image {
